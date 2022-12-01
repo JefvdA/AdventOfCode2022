@@ -14,15 +14,24 @@ def compute(s: str) -> int:
     total_calories = []
     for line in iter(s.splitlines()):
         if line == "":
-            sum = 0
-            for calorie in calories:
-                sum += calorie
+            sum = calculate_total(calories)
             total_calories.append(sum)
             calories = []
             continue
-        
+
         calories.append(int(line))
+
+    sum = calculate_total(calories)
+    total_calories.append(sum)
+
     return max(total_calories)
+
+
+def calculate_total(calories) -> int:
+    sum = 0
+    for calorie in calories:
+        sum += calorie
+    return sum
 
 
 @pytest.mark.parametrize(
