@@ -10,31 +10,17 @@ INPUT_PATH = os.path.join(os.path.dirname(__file__), "input.txt")
 
 
 def compute(s: str) -> int:
-    calories = []
-    total_calories = []
-    for line in iter(s.splitlines()):
-        if line == "":
-            sum = calculate_total(calories)
-            total_calories.append(sum)
-            calories = []
-            continue
+    elves = []
+    for elve in s.split('\n\n'):
+        calories = 0
+        for line in elve.splitlines():
+            calories += int(line)
+        elves.append(calories)
 
-        calories.append(int(line))
-
-    sum = calculate_total(calories)
-    total_calories.append(sum)
-
-    return max(total_calories)
+    return max(elves)
 
 
-def calculate_total(calories) -> int:
-    sum = 0
-    for calorie in calories:
-        sum += calorie
-    return sum
-
-
-@pytest.mark.parametrize(
+@ pytest.mark.parametrize(
     ("sample_input", "expected"),
     (
         # put given test cases here
@@ -54,6 +40,8 @@ def calculate_total(calories) -> int:
 
 10000''', 24000),
     ),
+
+
 )
 def test_compute(sample_input: str, expected: int) -> None:
     assert compute(sample_input) == expected

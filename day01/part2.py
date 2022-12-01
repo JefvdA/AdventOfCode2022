@@ -10,35 +10,19 @@ INPUT_PATH = os.path.join(os.path.dirname(__file__), "input.txt")
 
 
 def compute(s: str) -> int:
-    calories = []
-    total_calories = []
-    for line in iter(s.splitlines()):
-        if line == "":
-            sum = calculate_total(calories)
-            total_calories.append(sum)
-            calories = []
-            continue
-
-        calories.append(int(line))
-
-    sum = calculate_total(calories)
-    total_calories.append(sum)
+    elves = []
+    for elve in s.split('\n\n'):
+        calories = 0
+        for line in elve.splitlines():
+            calories += int(line)
+        elves.append(calories)
 
     sum = 0
     for _ in range(3):
-        max_calories = max(total_calories)
-
+        max_calories = max(elves)
         sum += max_calories
+        elves.remove(max_calories)
 
-        total_calories.remove(max_calories)
-
-    return sum
-
-
-def calculate_total(calories) -> int:
-    sum = 0
-    for calorie in calories:
-        sum += calorie
     return sum
 
 
