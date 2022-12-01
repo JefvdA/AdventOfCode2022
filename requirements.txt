@@ -1,3 +1,5 @@
 requests
 python-decouple
 pytest
+bs4
+colorama
