@@ -43,11 +43,7 @@ def compute(s: str) -> int:
 
         if my_turn == enemy_turn:
             my_score += 3
-        elif my_turn == Options.Rock and enemy_turn == Options.Scissors:
-            my_score += 6
-        elif my_turn == Options.Paper and enemy_turn == Options.Rock:
-            my_score += 6
-        elif my_turn == Options.Scissors and enemy_turn == Options.Paper:
+        elif int(my_turn) == int(enemy_turn) % 3 + 1:
             my_score += 6
 
     return my_score
