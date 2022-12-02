@@ -35,8 +35,8 @@ def main():
 
     if "That's the right answer" in response_text:
         print(f'{colorama.Back.GREEN}{response_text}{colorama.Style.RESET_ALL}')
-
-    print(f'{colorama.Back.RED}{response_text}{colorama.Style.RESET_ALL}')
+    else:
+        print(f'{colorama.Back.RED}{response_text}{colorama.Style.RESET_ALL}')
 
 
 if __name__ == "__main__":
