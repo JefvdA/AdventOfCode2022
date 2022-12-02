@@ -17,13 +17,8 @@ def compute(s: str) -> int:
             calories += int(line)
         elves.append(calories)
 
-    sum = 0
-    for _ in range(3):
-        max_calories = max(elves)
-        sum += max_calories
-        elves.remove(max_calories)
-
-    return sum
+    elves.sort(reverse=True)
+    return sum(elves[:3])
 
 
 @pytest.mark.parametrize(
