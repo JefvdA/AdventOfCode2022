@@ -11,9 +11,9 @@ INPUT_PATH = os.path.join(os.path.dirname(__file__), "input.txt")
 
 
 class Options(enum.Enum):
-    Rock = 1
-    Paper = 2
-    Scissors = 3
+    Rock = 0
+    Paper = 1
+    Scissors = 2
 
     def __int__(self):
         return self.value
@@ -32,19 +32,16 @@ def compute(s: str) -> int:
         enemy_turn, outcome = line.split()
         enemy_turn = ENEMY_TURNS[enemy_turn]
 
-        my_turn = enemy_turn
+        my_turn = Options((int(enemy_turn) + 2) % 3)
 
-        if outcome == 'X':
-            my_turn = Options((int(enemy_turn) % 3 + 1) % 3 + 1)
-        elif outcome == 'Z':
-            my_turn = Options(int(enemy_turn) % 3 + 1)
-
-        my_score += int(my_turn)
-
-        if my_turn == enemy_turn:
+        if outcome == 'Y':
+            my_turn = enemy_turn
             my_score += 3
-        elif int(my_turn) == int(enemy_turn) % 3 + 1:
+        elif outcome == 'Z':
+            my_turn = Options((int(enemy_turn) + 1) % 3)
             my_score += 6
+
+        my_score += int(my_turn) + 1
 
     return my_score
 
