@@ -20,7 +20,7 @@ def main():
         print("Please run this script from directory of the day you want to download the input for.")
         return
 
-    day = directory[3:].strip('0')
+    day = directory[3:].lstrip("0")
     response = requests.get(
         f"https://adventofcode.com/2022/day/{day}/input", cookies=cookies)
     input = response.text
