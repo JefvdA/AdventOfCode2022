@@ -4,6 +4,7 @@ Author: Jef van der Avoirt
 """
 import os.path
 import pytest
+from timeit import timeit
 
 
 INPUT_PATH = os.path.join(os.path.dirname(__file__), "input.txt")
@@ -76,7 +77,8 @@ def test_compute(sample_input: str, expected: int) -> None:
 
 def main():
     with open(INPUT_PATH) as f:
-        print(compute(f.read()))
+        ex_time = timeit(lambda: print(compute(f.read())), number=1)
+    print(f"Execution time: {ex_time:.3f} seconds")
 
 
 if __name__ == "__main__":
